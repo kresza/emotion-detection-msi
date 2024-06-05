@@ -3,6 +3,7 @@ from keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from tensorflow.keras.optimizers import Adam
 
+
 img_width, img_height = 48, 48
 batch_size = 32
 epochs = 10
@@ -46,7 +47,6 @@ model = Sequential([
 model.compile(loss='sparse_categorical_crossentropy',
               optimizer=Adam(),
               metrics=['accuracy'])
-
 model.fit(
     normalized_train_ds,
     validation_data=normalized_val_ds,

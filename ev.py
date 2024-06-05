@@ -14,6 +14,7 @@ video = cv2.VideoCapture(0)
 
 img_width, img_height = 48, 48
 
+
 while True:
     ret, image = video.read()
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -23,6 +24,7 @@ while True:
         minNeighbors=5,
         minSize=(30, 30)
     )
+
     for (x, y, w, h) in faces:
         cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
         face_img = image[y:y + h, x:x + w]
