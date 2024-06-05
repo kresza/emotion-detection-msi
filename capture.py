@@ -5,7 +5,6 @@ from datetime import datetime
 face_detection = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 video = cv2.VideoCapture(0)
 
-# Directory to save images
 save_dir = 'captured_faces'
 if not os.path.exists(save_dir):
     os.makedirs(save_dir)
@@ -23,7 +22,6 @@ while True:
         cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
         face_img = image[y:y + h, x:x + w]
 
-        # Save the captured face with a label
         label = input("Enter emotion label for the captured face (happy, sad, etc.): ")
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S%f")
         file_path = os.path.join(save_dir, f"{label}_{timestamp}.jpg")
@@ -31,7 +29,7 @@ while True:
 
     cv2.imshow('video', image)
     k = cv2.waitKey(30) & 0xff
-    if k == 27:  # Press 'Esc' to exit
+    if k == 27:
         break
 
 video.release()

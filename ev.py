@@ -4,17 +4,14 @@ from tensorflow.keras.models import load_model
 import tensorflow as tf
 import os
 
-# Load the trained model
 model = load_model('emotion_model.h5')
 
-# Emotion labels
 train_data_dir = 'train'
 emotion_labels = {i: emotion for i, emotion in enumerate(os.listdir(train_data_dir))}
 
 face_detection = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 video = cv2.VideoCapture(0)
 
-# Parameters
 img_width, img_height = 48, 48
 
 while True:
@@ -42,7 +39,7 @@ while True:
 
     cv2.imshow('video', image)
     k = cv2.waitKey(30) & 0xff
-    if k == 27:  # Press 'Esc' to exit
+    if k == 27:
         break
 
 video.release()

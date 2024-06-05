@@ -3,12 +3,10 @@ from keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from tensorflow.keras.optimizers import Adam
 
-# Parameters
 img_width, img_height = 48, 48
 batch_size = 32
 epochs = 10
 
-# Data preparation
 train_data_dir = 'train'
 
 train_ds = tf.keras.utils.image_dataset_from_directory(
@@ -29,12 +27,10 @@ val_ds = tf.keras.utils.image_dataset_from_directory(
     batch_size=batch_size
 )
 
-# Normalize pixel values to be between 0 and 1
 normalization_layer = tf.keras.layers.Rescaling(1./255)
 normalized_train_ds = train_ds.map(lambda x, y: (normalization_layer(x), y))
 normalized_val_ds = val_ds.map(lambda x, y: (normalization_layer(x), y))
 
-# Model definition
 num_classes = len(train_ds.class_names)
 
 model = Sequential([
@@ -51,12 +47,10 @@ model.compile(loss='sparse_categorical_crossentropy',
               optimizer=Adam(),
               metrics=['accuracy'])
 
-# Training the model
 model.fit(
     normalized_train_ds,
     validation_data=normalized_val_ds,
     epochs=epochs
 )
 
-# Save the model
 model.save('emotion_model.h5')
