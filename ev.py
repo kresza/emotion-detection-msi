@@ -14,7 +14,6 @@ video = cv2.VideoCapture(0)
 
 img_width, img_height = 48, 48
 
-
 while True:
     ret, image = video.read()
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -43,6 +42,7 @@ while True:
     k = cv2.waitKey(30) & 0xff
     if k == 27:
         break
+
 
 video.release()
 cv2.destroyAllWindows()
